@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,10 +37,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean checkCredenciales() {
-        return false;
+        boolean rightCredentials = true;
 
+        username.setError(null);
+        password.setError(null);
 
-    }
+        String usernameText = username.getText().toString();
+        String passwordText = password.getText().toString();
+
+        if(usernameText.equalsIgnoreCase("veganet")) {
+            if (passwordText.equalsIgnoreCase("hola123")) {
+                //Las credenciales son correctas
+                Toast.makeText(getApplicationContext(), "Credenciales CORRECTAS !!", Toast.LENGTH_LONG).show();
+            } else {
+                password.setError("Password Incorrecto");
+                rightCredentials = false;
+            }
+        } else {
+
+                username.setError("Usuario Incorrecto");
+                rightCredentials = false;
+            }
+
+            return rightCredentials;
+        }
 
     private boolean passValidation() {
 
